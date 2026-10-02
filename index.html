@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-adsense-account" content="ca-pub-1868225195209205">
 <title>Car Dodge Game - Free Online Racing Game | FunBit Games</title>
-<meta name="description" content="Play Car Dodge by FunBit Games - exciting free online car racing game. Dodge traffic, collect points, beat high scores.">
+<meta name="description" content="Play Car Dodge by FunBit Games - exciting free online car racing game.">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1868225195209205" crossorigin="anonymous"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -13,30 +13,23 @@ body{background:#0f172a;color:#e2e8f0;font-family:system-ui,sans-serif;min-heigh
 header{background:#020617;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1e293b}
 .logo{font-weight:800;font-size:22px;color:#38bdf8}
 .nav a{color:#94a3b8;margin-left:18px;text-decoration:none;font-size:14px;cursor:pointer}
-.nav a:hover{color:#fff}
 .main-wrap{flex:1;display:flex;justify-content:center;gap:12px;padding:12px;max-width:1400px;margin:0 auto;width:100%}
 .ad-side{width:160px;min-height:600px;background:#1e293b;border:1px dashed #334155;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px;text-align:center;padding:10px;border-radius:8px}
 .game-center{flex:1;max-width:420px;display:flex;flex-direction:column;align-items:center}
-#gameBox{width:100%;background:#000;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 0 30px rgba(56,189,248,0.2);border:2px solid #334155}
-canvas{display:block;width:100%;height:600px;background:linear-gradient(#1e293b,#0f172a);touch-action:none;cursor:grab}
-canvas:active{cursor:grabbing}
+#gameBox{width:100%;background:#000;border-radius:12px;overflow:hidden;position:relative;border:2px solid #334155}
+canvas{display:block;width:100%;height:600px;touch-action:none;cursor:grab;background:#0a0a0a}
 #ui{position:absolute;top:0;left:0;width:100%;padding:10px;display:flex;justify-content:space-between;font-weight:700;color:#fff;pointer-events:none}
-#startScreen,#overScreen{position:absolute;inset:0;background:rgba(2,6,23,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10}
+#startScreen,#overScreen{position:absolute;inset:0;background:rgba(2,6,23,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5}
 #overScreen{display:none}
-h1{font-size:28px;margin-bottom:10px;color:#38bdf8}
-p.desc{color:#94a3b8;font-size:14px;margin:10px 20px;text-align:center;line-height:1.5}
-.btn{background:#38bdf8;color:#020617;border:none;padding:12px 28px;border-radius:999px;font-weight:800;font-size:16px;cursor:pointer;margin-top:12px}
+h1{font-size:28px;color:#38bdf8}
+p.desc{color:#94a3b8;font-size:14px;margin:10px;text-align:center}
+.btn{background:#facc15;color:#000;border:none;padding:12px 28px;border-radius:8px;font-weight:800;font-size:16px;cursor:pointer;margin-top:12px}
 .controls{margin-top:10px;font-size:12px;color:#64748b;text-align:center}
 #mobileCtrl{width:100%;display:flex;gap:10px;margin-top:10px}
-.mobBtn{flex:1;background:#1e293b;border:1px solid #334155;color:#38bdf8;padding:18px 0;border-radius:12px;font-size:20px;font-weight:800;user-select:none;touch-action:none}
-.mobBtn:active{background:#38bdf8;color:#000}
-footer{background:#020617;border-top:1px solid #1e293b;padding:20px;text-align:center;margin-top:20px}
-footer a{color:#94a3b8;margin:0 10px;font-size:13px;text-decoration:none;cursor:pointer}
-footer p{font-size:12px;color:#475569;margin-top:12px;line-height:1.6;max-width:800px;margin:auto}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:99;align-items:center;justify-content:center;padding:20px}
+.mobBtn{flex:1;background:#1e293b;border:1px solid #334155;color:#38bdf8;padding:18px 0;border-radius:12px;font-size:18px;font-weight:800}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:20px}
 .modal.active{display:flex}
-.modal-box{background:#0f172a;border:1px solid #334155;max-width:700px;max-height:85vh;overflow-y:auto;padding:24px;border-radius:12px;width:100%}
-.modal-box h2{color:#38bdf8;margin-bottom:12px}
+.modal-box{background:#0f172a;border:1px solid #334155;max-width:700px;padding:24px;border-radius:12px;width:100%}
 .close{float:right;background:#1e293b;border:none;color:#fff;padding:6px 12px;border-radius:6px;cursor:pointer}
 @media(max-width:900px){.ad-side{display:none}}
 </style>
@@ -44,47 +37,44 @@ footer p{font-size:12px;color:#475569;margin-top:12px;line-height:1.6;max-width:
 <body>
 <header><div class="logo">FUNBIT GAMES</div><div class="nav"><a onclick="openModal('about')">About</a><a onclick="openModal('privacy')">Privacy</a><a onclick="openModal('contact')">Contact</a></div></header>
 <div class="main-wrap">
-<div class="ad-side">LEFT AD SPACE<br><br>AdSense Will Show Here</div>
+<div class="ad-side">LEFT AD</div>
 <div class="game-center">
 <div id="gameBox">
 <div id="ui"><span id="score">Score: 0</span><span id="high">Best: 0</span></div>
 <canvas id="c" width="360" height="600"></canvas>
-<div id="startScreen"><h1>CAR DODGE</h1><p class="desc">Dodge incoming cars! Use ← → or A D or drag on road or buttons.</p><button class="btn" onclick="startGame()">PLAY NOW</button></div>
-<div id="overScreen"><h1>CRASH!</h1><p class="desc" id="finalScore">Score: 0</p><button class="btn" onclick="startGame()">PLAY AGAIN</button></div>
+<div id="startScreen"><h1>CAR DODGE</h1><p class="desc">Dodge incoming cars! Drag or use A D</p><button class="btn" onclick="startGame()">PLAY NOW</button></div>
+<div id="overScreen"><h1 id="goText">GAME OVER</h1><p class="desc" id="finalScore">Score: 0</p><button class="btn" onclick="startGame()">Restart</button></div>
 </div>
 <div id="mobileCtrl"><button class="mobBtn" id="leftBtn">← LEFT</button><button class="mobBtn" id="rightBtn">RIGHT →</button></div>
-<div class="controls">PC: ← → or A D | Mobile: Drag on road or use buttons</div>
+<div class="controls">Use ← → Arrows or A D - Drag on mobile</div>
 <div style="margin-top:12px;width:100%;min-height:90px;background:#1e293b;border:1px dashed #334155;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px">BOTTOM AD SPACE - 728x90</div>
-<article style="margin-top:18px;text-align:left;background:#1e293b;padding:14px;border-radius:8px;width:100%">
-<h3 style="color:#e2e8f0;font-size:15px;margin-bottom:6px">How to Play Car Dodge?</h3>
-<p style="font-size:13px;color:#94a3b8;line-height:1.6">Car Dodge by FunBit Games is a thrilling endless racing game. Dodge red cars, survive as long as you can. The longer you survive, the faster it gets! Works on all phones, no install needed.</p>
-</article>
+<article style="margin-top:18px;text-align:left;background:#1e293b;padding:14px;border-radius:8px;width:100%"><h3 style="color:#e2e8f0;font-size:15px;margin-bottom:6px">How to Play Car Dodge?</h3><p style="font-size:13px;color:#94a3b8;line-height:1.6">Car Dodge by FunBit Games is a thrilling endless racing game. Dodge cars, survive as long as you can!</p></article>
 </div>
-<div class="ad-side">RIGHT AD SPACE<br><br>AdSense Will Show Here</div>
+<div class="ad-side">RIGHT AD</div>
 </div>
-<footer>
-<div><a onclick="openModal('about')">About Us</a><a onclick="openModal('privacy')">Privacy Policy</a><a onclick="openModal('contact')">Contact</a><a onclick="openModal('terms')">Terms</a></div>
-<p>Car Dodge is developed by FunBit Games Studio, Chakan, Maharashtra, India.<br>Contact: funbitgames.studio@gmail.com<br>© 2026 FunBit Games Studio - All Rights Reserved.</p>
-</footer>
-<div id="modal-about" class="modal" onclick="closeModal('about')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('about')">X</button><h2>About FunBit Games</h2><p>Welcome to FunBit Games Studio! We are an independent game studio based in Chakan, Maharashtra, India.</p></div></div>
-<div id="modal-privacy" class="modal" onclick="closeModal('privacy')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('privacy')">X</button><h2>Privacy Policy</h2><p>Last updated: Oct 2, 2026 — FunBit Games Studio</p><p>We respect your privacy. We use localStorage for high score and Google AdSense cookies for ads.</p></div></div>
-<div id="modal-contact" class="modal" onclick="closeModal('contact')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('contact')">X</button><h2>Contact Us</h2><p>Email: <strong>funbitgames.studio@gmail.com</strong><br>Studio: FunBit Games Studio, Chakan, Pune, India</p></div></div>
-<div id="modal-terms" class="modal" onclick="closeModal('terms')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('terms')">X</button><h2>Terms & Conditions</h2><p>Game is provided as-is for entertainment only.</p></div></div>
+<footer style="background:#020617;border-top:1px solid #1e293b;padding:20px;text-align:center;margin-top:20px"><p style="font-size:12px;color:#475569">© 2026 FunBit Games Studio - funbitgames.studio@gmail.com</p></footer>
+<div id="modal-privacy" class="modal" onclick="closeModal('privacy')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('privacy')">X</button><h2 style="color:#38bdf8">Privacy Policy</h2><p>Last updated: Oct 2, 2026 — FunBit Games Studio</p><p>We use localStorage for high score. Cookies are used for Google ads.</p><p>Contact: funbitgames.studio@gmail.com</p></div></div>
+<div id="modal-about" class="modal" onclick="closeModal('about')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('about')">X</button><h2 style="color:#38bdf8">About</h2><p>FunBit Games Studio, Chakan, India</p></div></div>
+<div id="modal-contact" class="modal" onclick="closeModal('contact')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('contact')">X</button><h2 style="color:#38bdf8">Contact Us</h2><p>Have feedback or found a bug?</p><br><p>Email us: <strong>funbitgames.studio@gmail.com</strong></p><p>Studio: FunBit Games Studio</p><p>Location: Chakan, Pune, Maharashtra, India</p></div></div>
+<div id="modal-terms" class="modal" onclick="closeModal('terms')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('terms')">X</button><h2 style="color:#38bdf8">Terms</h2><p>Game is provided as-is for entertainment.</p></div></div>
 
 <script>
 const cvs=document.getElementById('c'), ctx=cvs.getContext('2d');
-let player,enemies=[],score=0,speed=3,gameRunning=false,keys={},high=localStorage.getItem('carHigh')||0,lastLane=-1;
+let player,enemies=[],score=0,speed=3,gameRunning=false,keys={},high=localStorage.getItem('carHigh')||0,lastLane=-1,roadOffset=0;
 document.getElementById('high').innerText='Best: '+high;
 const roadW=260,roadX=50;
-function reset(){player={x:160,y:480,w:40,h:70,color:'#38bdf8'};enemies=[];score=0;speed=3.5;}
+function reset(){player={x:160,y:480,w:36,h:64,color:'#2563eb'};enemies=[];score=0;speed=3.5;roadOffset=0;}
 function startGame(){reset();document.getElementById('startScreen').style.display='none';document.getElementById('overScreen').style.display='none';gameRunning=true;loop();}
 function spawn(){
   if(Math.random()<0.022){
     let lane=Math.floor(Math.random()*3);
     if(lane===lastLane) return;
-    let can=true; for(let e of enemies){if(e.y<130){can=false;break;}} if(!can) return;
-    lastLane=lane; let newX=roadX+15+lane*73;
-    enemies.push({x:newX,y:-80,w:40,h:70,color:'#f43f5e'});
+    let can=true; for(let e of enemies){if(e.y<120){can=false;break;}} if(!can) return;
+    lastLane=lane; let newX=roadX+12+lane*75;
+    // random real colors like your photo: orange, red, dark red
+    let colors=['#fb923c','#f87171','#ef4444','#dc2626','#f97316'];
+    let col=colors[Math.floor(Math.random()*colors.length)];
+    enemies.push({x:newX,y:-80,w:36,h:64,color:col});
   }
 }
 function update(){
@@ -94,23 +84,44 @@ function update(){
  enemies.forEach(e=>e.y+=speed);
  enemies=enemies.filter(e=>e.y<620);
  score++; if(score%500==0) speed+=0.25;
+ roadOffset+=speed; if(roadOffset>40) roadOffset-=40;
  document.getElementById('score').innerText='Score: '+Math.floor(score/10);
  for(let e of enemies){ if(player.x<e.x+e.w && player.x+player.w>e.x && player.y<e.y+e.h && player.y+player.h>e.y){gameOver();return;}}
  spawn();
 }
 function drawRoad(){
-  ctx.fillStyle='#1e293b';ctx.fillRect(0,0,360,600);
-  ctx.fillStyle='#0f172a';ctx.fillRect(roadX,0,roadW,600);
-  ctx.strokeStyle='#475569';ctx.setLineDash([18,18]);ctx.lineWidth=2;
-  ctx.beginPath();ctx.moveTo(roadX+roadW/3,0);ctx.lineTo(roadX+roadW/3,600);
-  ctx.moveTo(roadX+2*roadW/3,0);ctx.lineTo(roadX+2*roadW/3,600);ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle='#0a0a0a';ctx.fillRect(0,0,360,600);
+  ctx.fillStyle='#1a1a1a';ctx.fillRect(roadX,0,roadW,600);
+  ctx.fillStyle='#6b7280';
+  for(let y=-40+roadOffset; y<600; y+=40){
+    ctx.fillRect(roadX+roadW/2-2, y, 4, 20);
+  }
 }
+// REAL CAR DRAW - like your photo!
 function drawCar(o){
-  ctx.fillStyle=o.color;ctx.fillRect(o.x,o.y,o.w,o.h);
+  ctx.save();
+  // car body
+  ctx.fillStyle=o.color;
+  ctx.beginPath();
+  ctx.roundRect(o.x, o.y, o.w, o.h, 4);
+  ctx.fill();
+  // windshield black
   ctx.fillStyle='#020617';
-  ctx.fillRect(o.x+6,o.y+8,10,10); ctx.fillRect(o.x+o.w-16,o.y+8,10,10);
-  ctx.fillRect(o.x+6,o.y+25,10,10); ctx.fillRect(o.x+o.w-16,o.y+25,10,10);
-  ctx.fillRect(o.x+6,o.y+48,10,10); ctx.fillRect(o.x+o.w-16,o.y+48,10,10);
+  ctx.fillRect(o.x+6, o.y+8, o.w-12, 14);
+  // side windows shadow
+  ctx.fillStyle='rgba(0,0,0,0.2)';
+  ctx.fillRect(o.x+2, o.y+28, o.w-4, 2);
+  // headlights yellow (bottom)
+  ctx.fillStyle='#fde047';
+  ctx.fillRect(o.x+5, o.y+o.h-5, 8, 4);
+  ctx.fillRect(o.x+o.w-13, o.y+o.h-5, 8, 4);
+  // wheels black small on sides
+  ctx.fillStyle='#111827';
+  ctx.fillRect(o.x-3, o.y+12, 4, 10);
+  ctx.fillRect(o.x+o.w-1, o.y+12, 4, 10);
+  ctx.fillRect(o.x-3, o.y+o.h-20, 4, 10);
+  ctx.fillRect(o.x+o.w-1, o.y+o.h-20, 4, 10);
+  ctx.restore();
 }
 function draw(){drawRoad();enemies.forEach(drawCar);drawCar(player);}
 function loop(){if(!gameRunning) return;update();draw();requestAnimationFrame(loop);}
@@ -122,8 +133,6 @@ function gameOver(){
 }
 window.addEventListener('keydown',e=>{keys[e.key]=true;keys[e.key.toLowerCase()]=true;});
 window.addEventListener('keyup',e=>{keys[e.key]=false;keys[e.key.toLowerCase()]=false;});
-
-// DRAG FIX - Mouse + Touch
 let isDragging=false;
 function getPointerX(e){
   const rect=cvs.getBoundingClientRect();
@@ -141,7 +150,6 @@ window.addEventListener('mouseup', ()=>{isDragging=false;});
 cvs.addEventListener('touchstart', e=>{isDragging=true; movePlayerTo(getPointerX(e)); e.preventDefault();},{passive:false});
 cvs.addEventListener('touchmove', e=>{if(isDragging){movePlayerTo(getPointerX(e)); e.preventDefault();}},{passive:false});
 cvs.addEventListener('touchend', ()=>{isDragging=false;});
-
 const lBtn=document.getElementById('leftBtn'), rBtn=document.getElementById('rightBtn');
 function bind(b,d){
   const s=e=>{e.preventDefault();keys[d]=true;};
