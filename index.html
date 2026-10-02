@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1868225195209205" crossorigin="anonymous"></script>
+<title>Car Dodge - Play Free</title>
+<style>
+body{margin:0;background:#111;color:#fff;display:flex;flex-direction:column;align-items:center;font-family:Arial}
+.main{display:flex;gap:12px;justify-content:center;align-items:flex-start;margin-top:10px}
+.side-col{display:flex;flex-direction:column;gap:12px;width:180px}
+.side-ad{width:180px;height:270px;background:#222;border-radius:8px;display:flex;align-items:center;justify-content:center}
+canvas{border:2px solid #555;border-radius:12px;background:#222;touch-action:none}
+button{margin:10px;padding:10px 25px;background:gold;border:none;border-radius:6px;font-weight:bold;cursor:pointer}
+@media(max-width:900px){.side-col{display:none}}
+.ad-box{width:100%;max-width:760px;margin:8px 0;background:#222;border-radius:8px;min-height:90px;display:flex;align-items:center;justify-content:center}
+</style>
+</head>
+<body>
+
+<!-- TOP AD ABOVE SCORE -->
+<div class="ad-box">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1868225195209205" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<h2>🚗 CAR DODGE - Score: <span id="s">0</span></h2>
+
+<div class="main">
+  <!-- LEFT - 2 ADS ONLY -->
+  <div class="side-col">
+    <div class="side-ad"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1868225195209205" data-ad-slot="1234567890" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="side-ad"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1868225195209205" data-ad-slot="1234567890" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div>
+
+  <canvas id="c" width="360" height="550"></canvas>
+
+  <!-- RIGHT - 2 ADS ONLY -->
+  <div class="side-col">
+    <div class="side-ad"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1868225195209205" data-ad-slot="1234567890" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="side-ad"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1868225195209205" data-ad-slot="1234567890" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div>
+</div>
+
+<p>Use ← → Arrows or A D - Drag on mobile</p>
+<button id="r" style="display:none" onclick="restart()">Restart</button>
+
+<!-- BOTTOM AD BELOW RESTART -->
+<div class="ad-box" style="margin-top:15px;">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1868225195209205" data-ad-slot="1234567890" data-ad-format="auto"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<script>
+const canvas=document.getElementById('c'),ctx=canvas.getContext('2d'),scoreEl=document.getElementById('s'),btn=document.getElementById('r');
+let car={x:160,y:460},obs=[],keys={},score=0,speed=3,over=false;
+function drawCar(x,y,color){ctx.fillStyle=color;ctx.fillRect(x+5,y,30,65);ctx.fillStyle='#111';ctx.fillRect(x+8,y+10,24,18);ctx.fillStyle='#000';ctx.fillRect(x,y+10,5,12);ctx.fillRect(x+35,y+10,5,12);ctx.fillStyle='#222';ctx.fillRect(x,y+50,8,10);ctx.fillRect(x+32,y+50,8,10);ctx.fillStyle='#ff0';ctx.fillRect(x+8,y+58,6,3);ctx.fillRect(x+26,y+58,6,3);}
+function draw(){if(over)return;ctx.fillStyle='#333';ctx.fillRect(0,0,360,550);ctx.fillStyle='#fff';for(let i=0;i<550;i+=40)ctx.fillRect(175,i+(Date.now()/5)%40,6,20);if(keys['ArrowLeft']||keys['a']||keys['A'])car.x-=6;if(keys['ArrowRight']||keys['d']||keys['D'])car.x+=6;car.x=Math.max(0,Math.min(320,car.x));drawCar(car.x,car.y,'#3b82f6');if(Math.random()<0.035)obs.push({x:Math.random()*300,y:-70});obs.forEach(o=>{o.y+=speed;drawCar(o.x,o.y,'#ef4444');if(o.x<car.x+35&&o.x+35>car.x&&o.y<car.y+65&&o.y+65>car.y){over=true;btn.style.display='block';ctx.fillStyle='rgba(0,0,0,0.75)';ctx.fillRect(0,0,360,550);ctx.fillStyle='#fff';ctx.font='bold 32px Arial';ctx.fillText('GAME OVER',75,280);}});obs=obs.filter(o=>{if(o.y>560){score++;scoreEl.textContent=score;if(score%10==0)speed+=0.5;return false}return true});requestAnimationFrame(draw);}
+function restart(){obs=[];score=0;speed=3;car.x=160;over=false;scoreEl.textContent=0;btn.style.display='none';draw();}
+window.addEventListener('keydown',e=>keys[e.key]=true);window.addEventListener('keyup',e=>keys[e.key]=false);
+canvas.addEventListener('touchmove',e=>{e.preventDefault();let r=canvas.getBoundingClientRect();car.x=e.touches[0].clientX-r.left-20;},{passive:false});
+draw();
+</script>
+</body>
+</html>
