@@ -78,7 +78,7 @@ document.getElementById('high').innerText='Best: '+high;
 const roadW=260,roadX=50;
 function reset(){player={x:180,y:500,w:32,h:56,color:'#38bdf8'};enemies=[];score=0;speed=3;}
 function startGame(){reset();document.getElementById('startScreen').style.display='none';document.getElementById('overScreen').style.display='none';gameRunning=true;loop();}
-function spawn(){if(Math.random()<0.04){const lane=Math.floor(Math.random()*3);const x=roadX+20+lane*70;enemies.push({x:x,y:-60,w:32,h:56,color:'#ef4444'});}}
+let lastLane = -1; function spawn(){   if(Math.random()<0.035){     let lane=Math.floor(Math.random()*3);     // Don't spawn in same lane twice + don't block all 3 lanes     if(lane===lastLane) return;     // Check if lane is already occupied near top     let blocked = enemies.some(e=> e.y < 100 && Math.abs(e.x - (roadX+20+lane*70)) < 30);     if(blocked) return;     lastLane=lane;     const x=roadX+20+lane*70;     enemies.push({x:x,y:-60,w:32,h:56,color:'#ef4444'});   } }
 function update(){
  if(keys['ArrowLeft']||keys['left']){player.x-=7;}
  if(keys['ArrowRight']||keys['right']){player.x+=7;}
