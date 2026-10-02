@@ -54,11 +54,11 @@ footer p{font-size:12px;color:#475569;margin-top:12px;line-height:1.6;max-width:
 <div id="overScreen"><h1>CRASH!</h1><p class="desc" id="finalScore">Score: 0</p><button class="btn" onclick="startGame()">PLAY AGAIN</button></div>
 </div>
 <div id="mobileCtrl"><button class="mobBtn" id="leftBtn">← LEFT</button><button class="mobBtn" id="rightBtn">RIGHT →</button></div>
-<div class="controls">PC: ← → or A D | Mobile: Drag on road or use buttons - Scroll down for info</div>
+<div class="controls">PC: ← → or A D | Mobile: Drag on road or use buttons</div>
 <div style="margin-top:12px;width:100%;min-height:90px;background:#1e293b;border:1px dashed #334155;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px">BOTTOM AD SPACE - 728x90</div>
 <article style="margin-top:18px;text-align:left;background:#1e293b;padding:14px;border-radius:8px">
 <h3 style="color:#e2e8f0;font-size:15px;margin-bottom:6px">How to Play Car Dodge?</h3>
-<p style="font-size:13px;color:#94a3b8;line-height:1.6">Car Dodge by FunBit Games is a thrilling endless racing game. Dodge red cars, survive as long as you can. The longer you survive, the faster it gets! Works on all phones, no install needed. Challenge your friends to beat your high score!</p>
+<p style="font-size:13px;color:#94a3b8;line-height:1.6">Car Dodge by FunBit Games is a thrilling endless racing game. Dodge red cars, survive as long as you can. The longer you survive, the faster it gets! Works on all phones, no install needed.</p>
 </article>
 </div>
 <div class="ad-side">RIGHT AD SPACE<br><br>AdSense Will Show Here</div>
@@ -67,18 +67,48 @@ footer p{font-size:12px;color:#475569;margin-top:12px;line-height:1.6;max-width:
 <div><a onclick="openModal('about')">About Us</a><a onclick="openModal('privacy')">Privacy Policy</a><a onclick="openModal('contact')">Contact</a><a onclick="openModal('terms')">Terms</a></div>
 <p>Car Dodge is developed by FunBit Games Studio, Chakan, Maharashtra, India.<br>Contact: funbitgames.studio@gmail.com<br>© 2026 FunBit Games Studio - All Rights Reserved.</p>
 </footer>
-<div id="modal-about" class="modal" onclick="closeModal('about')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('about')">X</button><h2>About FunBit Games</h2><p>Welcome to FunBit Games Studio! We are an independent game studio based in Chakan, Maharashtra, India, passionate about creating fun, fast-paced, free online games.</p><p>Our mission is to build simple yet addictive HTML5 games that work on all devices without any downloads. Car Dodge is our first title — many more coming soon!</p><p>Founded: 2026 | Location: Chakan, Pune, India</p></div></div>
-<div id="modal-privacy" class="modal" onclick="closeModal('privacy')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('privacy')">X</button><h2>Privacy Policy</h2><p>Last updated: Oct 2, 2026 — FunBit Games Studio</p><p>At FunBit Games, we respect your privacy. We do not collect personal data directly.</p><ul><li><strong>Cookies:</strong> We use localStorage to save your high score. Cookies are used for Google AdSense ads.</li><li><strong>Google AdSense:</strong> Third-party vendor Google uses cookies to serve ads based on your prior visits. You can opt out at google.com/settings/ads</li><li><strong>Log Data:</strong> Hosting provider Vercel may collect anonymized IP/browser info for security.</li><li><strong>Contact:</strong> If you have privacy concerns, contact us at funbitgames.studio@gmail.com</li></ul></div></div>
-<div id="modal-contact" class="modal" onclick="closeModal('contact')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('contact')">X</button><h2>Contact Us</h2><p>Have feedback or found a bug?<br><br>Email us: <strong>funbitgames.studio@gmail.com</strong><br>Studio: FunBit Games Studio<br>Location: Chakan, Pune, Maharashtra, India<br></p></div></div>
-<div id="modal-terms" class="modal" onclick="closeModal('terms')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('terms')">X</button><h2>Terms & Conditions</h2><p>By using this website you agree to our terms. Game is provided as-is for entertainment only. FunBit Games Studio is not liable for any damages.</p><p>Contact: funbitgames.studio@gmail.com</p></div></div>
+<div id="modal-about" class="modal" onclick="closeModal('about')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('about')">X</button><h2>About FunBit Games</h2><p>Welcome to FunBit Games Studio! We are an independent game studio based in Chakan, Maharashtra, India, passionate about creating fun, fast-paced, free online games.</p></div></div>
+<div id="modal-privacy" class="modal" onclick="closeModal('privacy')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('privacy')">X</button><h2>Privacy Policy</h2><p>Last updated: Oct 2, 2026 — FunBit Games Studio</p><p>We respect your privacy. We use localStorage for high score and Google AdSense cookies for ads.</p></div></div>
+<div id="modal-contact" class="modal" onclick="closeModal('contact')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('contact')">X</button><h2>Contact Us</h2><p>Email: <strong>funbitgames.studio@gmail.com</strong><br>Studio: FunBit Games Studio, Chakan, Pune, India</p></div></div>
+<div id="modal-terms" class="modal" onclick="closeModal('terms')"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal('terms')">X</button><h2>Terms & Conditions</h2><p>Game is provided as-is for entertainment only.</p></div></div>
+
 <script>
-const cvs=document.getElementById('c'),ctx=cvs.getContext('2d');
+const cvs=document.getElementById('c');
+const ctx=cvs.getContext('2d');
 let player,enemies,score,speed,gameRunning,keys={},high=localStorage.getItem('carHigh')||0;
 document.getElementById('high').innerText='Best: '+high;
 const roadW=260,roadX=50;
-function reset(){player={x:180,y:500,w:32,h:56,color:'#38bdf8'};enemies=[];score=0;speed=3;}
-function startGame(){reset();document.getElementById('startScreen').style.display='none';document.getElementById('overScreen').style.display='none';gameRunning=true;loop();}
-let lastLane = -1; function spawn(){   if(Math.random()<0.035){     let lane=Math.floor(Math.random()*3);     // Don't spawn in same lane twice + don't block all 3 lanes     if(lane===lastLane) return;     // Check if lane is already occupied near top     let blocked = enemies.some(e=> e.y < 100 && Math.abs(e.x - (roadX+20+lane*70)) < 30);     if(blocked) return;     lastLane=lane;     const x=roadX+20+lane*70;     enemies.push({x:x,y:-60,w:32,h:56,color:'#ef4444'});   } }
+function reset(){
+  player={x:180,y:500,w:32,h:56,color:'#38bdf8'};
+  enemies=[];
+  score=0;
+  speed=3;
+}
+function startGame(){
+  reset();
+  document.getElementById('startScreen').style.display='none';
+  document.getElementById('overScreen').style.display='none';
+  gameRunning=true;
+  loop();
+}
+let lastLane=-1;
+function spawn(){
+  if(Math.random()<0.04){
+    let lane=Math.floor(Math.random()*3);
+    if(lane===lastLane) return;
+    let newX=roadX+20+lane*70;
+    let blocked=false;
+    for(let e of enemies){
+      if(e.y<130 && Math.abs(e.x-newX)<50){
+        blocked=true;
+        break;
+      }
+    }
+    if(blocked) return;
+    lastLane=lane;
+    enemies.push({x:newX,y:-60,w:32,h:56,color:'#ef4444'});
+  }
+}
 function update(){
  if(keys['ArrowLeft']||keys['left']){player.x-=7;}
  if(keys['ArrowRight']||keys['right']){player.x+=7;}
@@ -87,16 +117,52 @@ function update(){
  player.x=Math.max(roadX,Math.min(roadX+roadW-player.w,player.x));
  enemies.forEach(e=>e.y+=speed);
  enemies=enemies.filter(e=>e.y<620);
- score+=1;if(score%300==0) speed+=0.3;
+ score+=1;
+ if(score%300==0) speed+=0.3;
  document.getElementById('score').innerText='Score: '+Math.floor(score/10);
- for(let e of enemies){if(player.x<e.x+e.w&&player.x+player.w>e.x&&player.y<e.y+e.h&&player.y+player.h>e.y){gameOver();return;}}
+ for(let e of enemies){
+   if(player.x<e.x+e.w && player.x+player.w>e.x && player.y<e.y+e.h && player.y+player.h>e.y){
+     gameOver();
+     return;
+   }
+ }
  spawn();
 }
-function drawRoad(){ctx.fillStyle='#1e293b';ctx.fillRect(0,0,360,600);ctx.fillStyle='#334155';ctx.fillRect(roadX,0,roadW,600);ctx.strokeStyle='#e2e8f0';ctx.setLineDash([20,20]);ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(roadX+roadW/3,0);ctx.lineTo(roadX+roadW/3,600);ctx.moveTo(roadX+2*roadW/3,0);ctx.lineTo(roadX+2*roadW/3,600);ctx.stroke();ctx.setLineDash([]);}
-function drawCar(o){ctx.fillStyle=o.color;ctx.fillRect(o.x,o.y,o.w,o.h);ctx.fillStyle='#0f172a';ctx.fillRect(o.x+4,o.y+8,8,12);ctx.fillRect(o.x+o.w-12,o.y+8,8,12);ctx.fillRect(o.x+4,o.y+o.h-16,8,12);ctx.fillRect(o.x+o.w-12,o.y+o.h-16,8,12);}
+function drawRoad(){
+  ctx.fillStyle='#1e293b';
+  ctx.fillRect(0,0,360,600);
+  ctx.fillStyle='#334155';
+  ctx.fillRect(roadX,0,roadW,600);
+  ctx.strokeStyle='#e2e8f0';
+  ctx.setLineDash([20,20]);
+  ctx.lineWidth=2;
+  ctx.beginPath();
+  ctx.moveTo(roadX+roadW/3,0);ctx.lineTo(roadX+roadW/3,600);
+  ctx.moveTo(roadX+2*roadW/3,0);ctx.lineTo(roadX+2*roadW/3,600);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+function drawCar(o){
+  ctx.fillStyle=o.color;
+  ctx.fillRect(o.x,o.y,o.w,o.h);
+  ctx.fillStyle='#0f172a';
+  ctx.fillRect(o.x+4,o.y+8,8,12);
+  ctx.fillRect(o.x+o.w-12,o.y+8,8,12);
+  ctx.fillRect(o.x+4,o.y+o.h-16,8,12);
+  ctx.fillRect(o.x+o.w-12,o.y+o.h-16,8,12);
+}
 function draw(){drawRoad();enemies.forEach(drawCar);drawCar(player);}
 function loop(){if(!gameRunning) return;update();draw();requestAnimationFrame(loop);}
-function gameOver(){gameRunning=false;if(Math.floor(score/10)>high){high=Math.floor(score/10);localStorage.setItem('carHigh',high);document.getElementById('high').innerText='Best: '+high;}document.getElementById('finalScore').innerText='Score: '+Math.floor(score/10)+' | Best: '+high;document.getElementById('overScreen').style.display='flex';}
+function gameOver(){
+  gameRunning=false;
+  if(Math.floor(score/10)>high){
+    high=Math.floor(score/10);
+    localStorage.setItem('carHigh',high);
+    document.getElementById('high').innerText='Best: '+high;
+  }
+  document.getElementById('finalScore').innerText='Score: '+Math.floor(score/10)+' | Best: '+high;
+  document.getElementById('overScreen').style.display='flex';
+}
 window.addEventListener('keydown',e=>{keys[e.key]=true;keys[e.key.toLowerCase()]=true;});
 window.addEventListener('keyup',e=>{keys[e.key]=false;keys[e.key.toLowerCase()]=false;});
 function getX(e){return (e.touches?e.touches[0].clientX:e.clientX);}
