@@ -94,18 +94,19 @@ function startGame(){
 }
 let lastLane=-1;
 function spawn(){
-  if(Math.random()<0.04){
+  function spawn(){
+  if(Math.random()<0.02){ // slower spawn
     let lane=Math.floor(Math.random()*3);
     if(lane===lastLane) return;
     let newX=roadX+20+lane*70;
-    let blocked=false;
+    let canSpawn=true;
     for(let e of enemies){
-      if(e.y<130 && Math.abs(e.x-newX)<50){
-        blocked=true;
+      if(e.y<150){ // check if road top is clear
+        canSpawn=false;
         break;
       }
     }
-    if(blocked) return;
+    if(!canSpawn) return;
     lastLane=lane;
     enemies.push({x:newX,y:-60,w:32,h:56,color:'#ef4444'});
   }
@@ -119,7 +120,7 @@ function update(){
  enemies.forEach(e=>e.y+=speed);
  enemies=enemies.filter(e=>e.y<620);
  score+=1;
- if(score%300==0) speed+=0.3;
+ if(score%500==0) speed+=0.2; // smoother difficulty
  document.getElementById('score').innerText='Score: '+Math.floor(score/10);
  for(let e of enemies){
    if(player.x<e.x+e.w && player.x+player.w>e.x && player.y<e.y+e.h && player.y+player.h>e.y){
