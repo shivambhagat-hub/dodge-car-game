@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Car Dodge Game - Free Online Racing Game | FunBit Games</title>
 <meta name="description" content="Play Car Dodge by FunBit Games - exciting free online car racing game. Dodge traffic, collect points, beat high scores.">
+<meta name="keywords" content="car game, dodge game, racing game, FunBit Games">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0f172a;color:#e2e8f0;font-family:system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;touch-action:none}
+body{background:#0f172a;color:#e2e8f0;font-family:system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column}
 header{background:#020617;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1e293b}
 .logo{font-weight:800;font-size:22px;color:#38bdf8}
 .nav a{color:#94a3b8;margin-left:18px;text-decoration:none;font-size:14px;cursor:pointer}
@@ -15,7 +16,7 @@ header{background:#020617;padding:12px 20px;display:flex;justify-content:space-b
 .main-wrap{flex:1;display:flex;justify-content:center;gap:12px;padding:12px;max-width:1400px;margin:0 auto;width:100%}
 .ad-side{width:160px;min-height:600px;background:#1e293b;border:1px dashed #334155;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px;text-align:center;padding:10px;border-radius:8px}
 .game-center{flex:1;max-width:420px;display:flex;flex-direction:column;align-items:center}
-#gameBox{width:100%;background:#000;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 0 30px rgba(56,189,248,0.2);border:2px solid #334155;touch-action:none}
+#gameBox{width:100%;background:#000;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 0 30px rgba(56,189,248,0.2);border:2px solid #334155}
 canvas{display:block;width:100%;height:600px;background:linear-gradient(#1e293b,#0f172a);touch-action:none}
 #ui{position:absolute;top:0;left:0;width:100%;padding:10px;display:flex;justify-content:space-between;font-weight:700;color:#fff;pointer-events:none}
 #startScreen,#overScreen{position:absolute;inset:0;background:rgba(2,6,23,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10}
@@ -49,12 +50,12 @@ footer p{font-size:12px;color:#475569;margin-top:12px;line-height:1.6;max-width:
 <div id="gameBox">
 <div id="ui"><span id="score">Score: 0</span><span id="high">Best: 0</span></div>
 <canvas id="c" width="360" height="600"></canvas>
-<div id="startScreen"><h1>CAR DODGE</h1><p class="desc">Dodge incoming cars! Use ← → or A D or drag or buttons.</p><button class="btn" onclick="startGame()">PLAY NOW</button></div>
+<div id="startScreen"><h1>CAR DODGE</h1><p class="desc">Dodge incoming cars! Use ← → or A D or drag on road or buttons.</p><button class="btn" onclick="startGame()">PLAY NOW</button></div>
 <div id="overScreen"><h1>CRASH!</h1><p class="desc" id="finalScore">Score: 0</p><button class="btn" onclick="startGame()">PLAY AGAIN</button></div>
 </div>
 <div id="mobileCtrl"><button class="mobBtn" id="leftBtn">← LEFT</button><button class="mobBtn" id="rightBtn">RIGHT →</button></div>
-<div class="controls">PC: ← → or A D | Mobile: Drag on road or use buttons</div>
-<div style="margin-top:12px;width:100%;min-height:90px;background:#1e293b;border:1px dashed #334155;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px">BOTTOM AD SPACE</div>
+<div class="controls">PC: ← → or A D | Mobile: Drag on road or use buttons - Scroll down for info</div>
+<div style="margin-top:12px;width:100%;min-height:90px;background:#1e293b;border:1px dashed #334155;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px">BOTTOM AD SPACE - 728x90</div>
 <article style="margin-top:18px;text-align:left;background:#1e293b;padding:14px;border-radius:8px">
 <h3 style="color:#e2e8f0;font-size:15px;margin-bottom:6px">How to Play Car Dodge?</h3>
 <p style="font-size:13px;color:#94a3b8;line-height:1.6">Car Dodge by FunBit Games is a thrilling endless racing game. Dodge red cars, survive as long as you can. The longer you survive, the faster it gets! Works on all phones, no install needed. Challenge your friends to beat your high score!</p>
@@ -98,8 +99,6 @@ function loop(){if(!gameRunning) return;update();draw();requestAnimationFrame(lo
 function gameOver(){gameRunning=false;if(Math.floor(score/10)>high){high=Math.floor(score/10);localStorage.setItem('carHigh',high);document.getElementById('high').innerText='Best: '+high;}document.getElementById('finalScore').innerText='Score: '+Math.floor(score/10)+' | Best: '+high;document.getElementById('overScreen').style.display='flex';}
 window.addEventListener('keydown',e=>{keys[e.key]=true;keys[e.key.toLowerCase()]=true;});
 window.addEventListener('keyup',e=>{keys[e.key]=false;keys[e.key.toLowerCase()]=false;});
-
-// NEW PERFECT MOBILE CONTROLS
 function getX(e){return (e.touches?e.touches[0].clientX:e.clientX);}
 function handleTouch(e){
   e.preventDefault();
@@ -116,8 +115,6 @@ cvs.addEventListener('touchend',()=>{isDragging=false;});
 cvs.addEventListener('mousedown',e=>{isDragging=true;handleTouch(e);});
 cvs.addEventListener('mousemove',e=>{if(isDragging) handleTouch(e);});
 window.addEventListener('mouseup',()=>{isDragging=false;});
-
-// BUTTON CONTROLS - always works
 const lBtn=document.getElementById('leftBtn'), rBtn=document.getElementById('rightBtn');
 function bindBtn(btn,dir){
   const start=(e)=>{e.preventDefault();keys[dir]=true;};
@@ -130,7 +127,6 @@ function bindBtn(btn,dir){
 }
 bindBtn(lBtn,'left');
 bindBtn(rBtn,'right');
-
 function openModal(id){document.getElementById('modal-'+id).classList.add('active');}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('active');}
 </script>
