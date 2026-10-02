@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Car Dodge Game - Free Online Racing Game | FunBit Games</title>
 <meta name="description" content="Play Car Dodge by FunBit Games - exciting free online car racing game. Dodge traffic, collect points, beat high scores.">
-<meta name="keywords" content="car game, dodge game, racing game, FunBit Games">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0f172a;color:#e2e8f0;font-family:system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+body{background:#0f172a;color:#e2e8f0;font-family:system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;touch-action:none}
 header{background:#020617;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1e293b}
 .logo{font-weight:800;font-size:22px;color:#38bdf8}
 .nav a{color:#94a3b8;margin-left:18px;text-decoration:none;font-size:14px;cursor:pointer}
@@ -16,8 +15,8 @@ header{background:#020617;padding:12px 20px;display:flex;justify-content:space-b
 .main-wrap{flex:1;display:flex;justify-content:center;gap:12px;padding:12px;max-width:1400px;margin:0 auto;width:100%}
 .ad-side{width:160px;min-height:600px;background:#1e293b;border:1px dashed #334155;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px;text-align:center;padding:10px;border-radius:8px}
 .game-center{flex:1;max-width:420px;display:flex;flex-direction:column;align-items:center}
-#gameBox{width:100%;background:#000;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 0 30px rgba(56,189,248,0.2);border:2px solid #334155}
-canvas{display:block;width:100%;height:600px;background:linear-gradient(#1e293b,#0f172a)}
+#gameBox{width:100%;background:#000;border-radius:12px;overflow:hidden;position:relative;box-shadow:0 0 30px rgba(56,189,248,0.2);border:2px solid #334155;touch-action:none}
+canvas{display:block;width:100%;height:600px;background:linear-gradient(#1e293b,#0f172a);touch-action:none}
 #ui{position:absolute;top:0;left:0;width:100%;padding:10px;display:flex;justify-content:space-between;font-weight:700;color:#fff;pointer-events:none}
 #startScreen,#overScreen{position:absolute;inset:0;background:rgba(2,6,23,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10}
 #overScreen{display:none}
@@ -25,6 +24,9 @@ h1{font-size:28px;margin-bottom:10px;color:#38bdf8}
 p.desc{color:#94a3b8;font-size:14px;margin:10px 20px;text-align:center;line-height:1.5}
 .btn{background:#38bdf8;color:#020617;border:none;padding:12px 28px;border-radius:999px;font-weight:800;font-size:16px;cursor:pointer;margin-top:12px}
 .controls{margin-top:10px;font-size:12px;color:#64748b;text-align:center}
+#mobileCtrl{width:100%;display:flex;gap:10px;margin-top:10px}
+.mobBtn{flex:1;background:#1e293b;border:1px solid #334155;color:#38bdf8;padding:18px 0;border-radius:12px;font-size:24px;font-weight:800;user-select:none;-webkit-user-select:none;touch-action:none}
+.mobBtn:active{background:#38bdf8;color:#000}
 footer{background:#020617;border-top:1px solid #1e293b;padding:20px;text-align:center;margin-top:20px}
 footer a{color:#94a3b8;margin:0 10px;font-size:13px;text-decoration:none;cursor:pointer}
 footer p{font-size:12px;color:#475569;margin-top:12px;line-height:1.6;max-width:800px;margin:auto}
@@ -47,10 +49,11 @@ footer p{font-size:12px;color:#475569;margin-top:12px;line-height:1.6;max-width:
 <div id="gameBox">
 <div id="ui"><span id="score">Score: 0</span><span id="high">Best: 0</span></div>
 <canvas id="c" width="360" height="600"></canvas>
-<div id="startScreen"><h1>CAR DODGE</h1><p class="desc">Dodge incoming cars! Use ← → or A D or tap screen sides.</p><button class="btn" onclick="startGame()">PLAY NOW</button></div>
+<div id="startScreen"><h1>CAR DODGE</h1><p class="desc">Dodge incoming cars! Use ← → or A D or drag or buttons.</p><button class="btn" onclick="startGame()">PLAY NOW</button></div>
 <div id="overScreen"><h1>CRASH!</h1><p class="desc" id="finalScore">Score: 0</p><button class="btn" onclick="startGame()">PLAY AGAIN</button></div>
 </div>
-<div class="controls">Controls: ← → or A D or Touch</div>
+<div id="mobileCtrl"><button class="mobBtn" id="leftBtn">← LEFT</button><button class="mobBtn" id="rightBtn">RIGHT →</button></div>
+<div class="controls">PC: ← → or A D | Mobile: Drag on road or use buttons</div>
 <div style="margin-top:12px;width:100%;min-height:90px;background:#1e293b;border:1px dashed #334155;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:12px">BOTTOM AD SPACE</div>
 <article style="margin-top:18px;text-align:left;background:#1e293b;padding:14px;border-radius:8px">
 <h3 style="color:#e2e8f0;font-size:15px;margin-bottom:6px">How to Play Car Dodge?</h3>
@@ -76,10 +79,10 @@ function reset(){player={x:180,y:500,w:32,h:56,color:'#38bdf8'};enemies=[];score
 function startGame(){reset();document.getElementById('startScreen').style.display='none';document.getElementById('overScreen').style.display='none';gameRunning=true;loop();}
 function spawn(){if(Math.random()<0.04){const lane=Math.floor(Math.random()*3);const x=roadX+20+lane*70;enemies.push({x:x,y:-60,w:32,h:56,color:'#ef4444'});}}
 function update(){
- if(keys['ArrowLeft']||keys['ArrowRight']||keys['a']||keys['d']||keys['A']||keys['D']){
-   if(keys['ArrowLeft']||keys['a']||keys['A']) player.x-=6;
-   if(keys['ArrowRight']||keys['d']||keys['D']) player.x+=6;
- }
+ if(keys['ArrowLeft']||keys['left']){player.x-=7;}
+ if(keys['ArrowRight']||keys['right']){player.x+=7;}
+ if(keys['a']||keys['A']){player.x-=7;}
+ if(keys['d']||keys['D']){player.x+=7;}
  player.x=Math.max(roadX,Math.min(roadX+roadW-player.w,player.x));
  enemies.forEach(e=>e.y+=speed);
  enemies=enemies.filter(e=>e.y<620);
@@ -93,11 +96,41 @@ function drawCar(o){ctx.fillStyle=o.color;ctx.fillRect(o.x,o.y,o.w,o.h);ctx.fill
 function draw(){drawRoad();enemies.forEach(drawCar);drawCar(player);}
 function loop(){if(!gameRunning) return;update();draw();requestAnimationFrame(loop);}
 function gameOver(){gameRunning=false;if(Math.floor(score/10)>high){high=Math.floor(score/10);localStorage.setItem('carHigh',high);document.getElementById('high').innerText='Best: '+high;}document.getElementById('finalScore').innerText='Score: '+Math.floor(score/10)+' | Best: '+high;document.getElementById('overScreen').style.display='flex';}
-window.addEventListener('keydown',e=>{keys[e.key]=true;});
-window.addEventListener('keyup',e=>{keys[e.key]=false;});
-cvs.addEventListener('touchstart',e=>{e.preventDefault();const x=e.touches[0].clientX;const r=cvs.getBoundingClientRect();keys['ArrowLeft']=x<r.left+r.width/2;keys['ArrowRight']=!keys['ArrowLeft'];},{passive:false});
-cvs.addEventListener('touchmove',e=>{e.preventDefault();const x=e.touches[0].clientX;const r=cvs.getBoundingClientRect();keys['ArrowLeft']=x<r.left+r.width/2;keys['ArrowRight']=!keys['ArrowLeft'];},{passive:false});
-cvs.addEventListener('touchend',e=>{e.preventDefault();keys['ArrowLeft']=false;keys['ArrowRight']=false;},{passive:false});
+window.addEventListener('keydown',e=>{keys[e.key]=true;keys[e.key.toLowerCase()]=true;});
+window.addEventListener('keyup',e=>{keys[e.key]=false;keys[e.key.toLowerCase()]=false;});
+
+// NEW PERFECT MOBILE CONTROLS
+function getX(e){return (e.touches?e.touches[0].clientX:e.clientX);}
+function handleTouch(e){
+  e.preventDefault();
+  const rect=cvs.getBoundingClientRect();
+  const x=getX(e);
+  const canvasX=(x-rect.left)/rect.width*360;
+  player.x=canvasX-player.w/2;
+  player.x=Math.max(roadX,Math.min(roadX+roadW-player.w,player.x));
+}
+let isDragging=false;
+cvs.addEventListener('touchstart',e=>{isDragging=true;handleTouch(e);},{passive:false});
+cvs.addEventListener('touchmove',e=>{if(isDragging) handleTouch(e);},{passive:false});
+cvs.addEventListener('touchend',()=>{isDragging=false;});
+cvs.addEventListener('mousedown',e=>{isDragging=true;handleTouch(e);});
+cvs.addEventListener('mousemove',e=>{if(isDragging) handleTouch(e);});
+window.addEventListener('mouseup',()=>{isDragging=false;});
+
+// BUTTON CONTROLS - always works
+const lBtn=document.getElementById('leftBtn'), rBtn=document.getElementById('rightBtn');
+function bindBtn(btn,dir){
+  const start=(e)=>{e.preventDefault();keys[dir]=true;};
+  const end=(e)=>{e.preventDefault();keys[dir]=false;};
+  btn.addEventListener('touchstart',start,{passive:false});
+  btn.addEventListener('touchend',end,{passive:false});
+  btn.addEventListener('mousedown',start);
+  btn.addEventListener('mouseup',end);
+  btn.addEventListener('mouseleave',end);
+}
+bindBtn(lBtn,'left');
+bindBtn(rBtn,'right');
+
 function openModal(id){document.getElementById('modal-'+id).classList.add('active');}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('active');}
 </script>
