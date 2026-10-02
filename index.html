@@ -95,8 +95,9 @@ function loop(){if(!gameRunning) return;update();draw();requestAnimationFrame(lo
 function gameOver(){gameRunning=false;if(Math.floor(score/10)>high){high=Math.floor(score/10);localStorage.setItem('carHigh',high);document.getElementById('high').innerText='Best: '+high;}document.getElementById('finalScore').innerText='Score: '+Math.floor(score/10)+' | Best: '+high;document.getElementById('overScreen').style.display='flex';}
 window.addEventListener('keydown',e=>{keys[e.key]=true;});
 window.addEventListener('keyup',e=>{keys[e.key]=false;});
-cvs.addEventListener('touchstart',e=>{const x=e.touches[0].clientX;const rect=cvs.getBoundingClientRect();const mid=rect.left+rect.width/2;if(x<mid) keys['ArrowLeft']=true; else keys['ArrowRight']=true;});
-cvs.addEventListener('touchend',e=>{keys['ArrowLeft']=false;keys['ArrowRight']=false;});
+cvs.addEventListener('touchstart',e=>{e.preventDefault();const x=e.touches[0].clientX;const r=cvs.getBoundingClientRect();keys['ArrowLeft']=x<r.left+r.width/2;keys['ArrowRight']=!keys['ArrowLeft'];},{passive:false});
+cvs.addEventListener('touchmove',e=>{e.preventDefault();const x=e.touches[0].clientX;const r=cvs.getBoundingClientRect();keys['ArrowLeft']=x<r.left+r.width/2;keys['ArrowRight']=!keys['ArrowLeft'];},{passive:false});
+cvs.addEventListener('touchend',e=>{e.preventDefault();keys['ArrowLeft']=false;keys['ArrowRight']=false;},{passive:false});
 function openModal(id){document.getElementById('modal-'+id).classList.add('active');}
 function closeModal(id){document.getElementById('modal-'+id).classList.remove('active');}
 </script>
